@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+ <title>Recruitee Data Generator</title>
+
+ <link href="https://fonts.googleapis.com/css?family=Dosis:400,700" rel="stylesheet">
+ <link href="style.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+ <div id="root"></div>
+
+ <button onclick="myFunction()">Create tags</button>
+
+ <p id="demo"></p>
+
+ <script>
+ function myFunction() {
+   //generate data
+    var depsNames =["ab1", "ab2", "ab3", "ab4", "ab5"];
+    //loop
+    for (var i =0; i < depsNames.length; i++){
+    //create item
+    var data = JSON.stringify({
+        "tags":[depsNames[i]]
+    });
+
+        new Promise(function (resolve, reject) {
+        var oReq = new XMLHttpRequest();
+
+            oReq.addEventListener("load", function () {
+            resolve(this.responseText)
+                });
+            oReq.addEventListener("error", function (error) {
+                reject(error)
+                })
+            oReq.open('POST', 'https://api.s.recruitee.com/c/5631/tags');
+            oReq.setRequestHeader('authorization', 'Bearer aXZlYlBGeTBxTVZ6NWFxZlFGSzdyZz09');
+            oReq.setRequestHeader('Content-Type', 'application/json');
+            oReq.send(data);
+
+            setTimeout(function () {
+            resolve()
+            }, 1000)
+        })
+    }
+ }
+ </script>
+
+</body>
+
+</html>
