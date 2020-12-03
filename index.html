@@ -2,57 +2,93 @@
 <html lang="en">
 
 <head>
- <meta charset="utf-8">
- <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
- <title>Recruitee Data Generator</title>
+  <title>Recruitee Data Generator</title>
 
- <link href="https://fonts.googleapis.com/css?family=Dosis:400,700" rel="stylesheet">
- <link href="style.css" rel="stylesheet">
+  <link href="style.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+  <script src = "file:///Users/anetabernad/node_modules/faker/dist/faker.js" type = "text/javascript"></script>
+
 
 </head>
 
 <body>
+  <div>
+    <img src="file:///Users/anetabernad/projects/generate-data/assets/logo_horizontal_light%20blue_rgba.png" width="200px">
+    <div class="title">Recruitee Data Generator</div>
+  </div>
+  <form id="companyData">
+   <fieldset>
+    <label for="companyId">Company id:</label>
+    <input type="text" id="companyId" name="companyId" value="5631">
+    <label for="companyId">API token:</label>
+    <input type="text" id="apiToken" name="apiToken" value="aXZlYlBGeTBxTVZ6NWFxZlFGSzdyZz09">
+   </fieldset>
+  </form>
+  <form>
+    <fieldset>
+      <div class="col-25">
+        <label for="tags">Tags:</label>
+      </div>
+      <div class="col-75">
+        <input type="number" id="tagsQuantity" name="tagsQuantity" placeholder="Quantity" min="0" max="1000">
+      </div>
+      <div class="col-25">
+        <label for="sourceTags">Source tags:</label>
+      </div>
+      <div class="col-75">
+        <input type="number" id="sourceTagsQuantity" name="sourceTagsQuantity" placeholder="Quantity" min="0" max="1000">
+      </div>
+      <div class="col-25">
+        <label for="jobsTags">Job tags:</label>
+      </div>
+      <div class="col-75">
+        <input type="number" id="jobsTagsQuantity" name="jobsTagsQuantity" placeholder="Quantity" min="0" max="1000">
+      </div>
+      <div class="col-25">
+        <label for="disqualifyReasons">Disqualify reasons:</label>
+      </div>
+      <div class="col-75">
+        <input type="number" id="disqualifyReasonsQuantity" name="disqualifyReasonsQuantity" placeholder="Quantity" min="0" max="20">
+      </div>
+      <div class="col-25">
+        <label for="departments">Departments:</label>
+      </div>
+      <div class="col-75">
+        <input type="number" id="departmentsQuantity" name="departmentsQuantity" placeholder="Quantity" min="0" max="20">
+      </div>
+      <div class="col-25">
+        <label for="candidates">Candidates:</label>
+      </div>
+      <div class="col-75">
+        <input type="number" id="candidatessQuantity" name="candidatesQuantity" placeholder="Quantity" min="0" max="20">
+      </div>
+      <div class="col-25">
+        <label for="departments">Jobs:</label>
+      </div>
+      <div class="col-75">
+        <input type="number" id="jobsQuantity" name="jobsQuantity" placeholder="Quantity" min="0" max="20">
+      </div>
+      <div class="col-25">
+        <label for="departments">Talent Pools:</label>
+      </div>
+      <div class="col-75">
+        <input type="number" id="talentpoolsQuantity" name="talentpoolsQuantity" placeholder="Quantity" min="0" max="20">
+      </div>
+    </fieldset>
+      <div>
+        <button type="submit" id="generate_btn">Generate</button>
+      </div>
+  </form>
 
- <div id="root"></div>
 
- <button onclick="myFunction()">Create tags</button>
 
- <p id="demo"></p>
-
- <script>
- function myFunction() {
-   //generate data
-    var depsNames =["ab1", "ab2", "ab3", "ab4", "ab5"];
-    //loop
-    for (var i =0; i < depsNames.length; i++){
-    //create item
-    var data = JSON.stringify({
-        "tags":[depsNames[i]]
-    });
-
-        new Promise(function (resolve, reject) {
-        var oReq = new XMLHttpRequest();
-
-            oReq.addEventListener("load", function () {
-            resolve(this.responseText)
-                });
-            oReq.addEventListener("error", function (error) {
-                reject(error)
-                })
-            oReq.open('POST', 'https://api.s.recruitee.com/c/5631/tags');
-            oReq.setRequestHeader('authorization', 'Bearer aXZlYlBGeTBxTVZ6NWFxZlFGSzdyZz09');
-            oReq.setRequestHeader('Content-Type', 'application/json');
-            oReq.send(data);
-
-            setTimeout(function () {
-            resolve()
-            }, 1000)
-        })
-    }
- }
- </script>
+  <script src="main.js"></script>
 
 </body>
 
 </html>
+
