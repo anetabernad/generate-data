@@ -1,143 +1,94 @@
-
-
-// Set company id
+//Get company id
 function getCompanyId() {
-  var companyId = document.getElementById('companyId').value = companyId
+  var companyId = (document.getElementById("companyId").value = companyId);
 }
-// Set token
+//Get token
 function getApiToken() {
-  var apiToken = document.getElementById('apiToken').value = apiToken
+  var apiToken = (document.getElementById("apiToken").value = apiToken);
 }
 
-//EVENT LISTENER
+//Event listener
+var generate_btn = document.querySelector("#generate_btn");
+generate_btn.addEventListener("click", fireRequests());
 
-var generate_btn = document.querySelector('#generate_btn');
-generate_btn.addEventListener('click',addTags);
-generate_btn.addEventListener('click',addSourceTags);
-generate_btn.addEventListener('click',addJobsTags);
-
-
-
-
-
-//CREATE TAGS
-function tagsQty() {
-  var tagsQuantity = document.getElementById('tagsQuantity').value = tagsQuantity
+function fireRequests(event) {
+//   event.preventDefault(); ->> ERROR
+  performRequest("/tags", tagsBody());
+  performRequest("/sources", sourceTagsBody());
+  performRequest("/offer_tags", offerTagsBody());
 }
 
-function addTags() {
+//Generate body for tags
+function tagsBody() {
+  var numberOfObjectsToCreate = document.getElementById("tagsQuantity").value ;
 
-  const length = tagsQuantity.value;
-
-  let tags = new Array(length);
-      for(let i=0; i<length ;i++){
-      tags[i] = faker.fake("{{name.jobDescriptor}} {{name.jobArea}}")
+  let objects = new Array(numberOfObjectsToCreate);
+  for (let i = 0; i < numberOfObjectsToCreate; i++) {
+    objects[i] = faker.fake("{{name.jobDescriptor}} {{name.jobArea}}");
   }
 
-  let endpoint = '/tags'
-
-
   var data = JSON.stringify({
-      "tags":tags
+    tags:objects
   });
 
-        new Promise(function (resolve, reject) {
-        var oReq = new XMLHttpRequest();
-
-            oReq.addEventListener("load", function () {
-            resolve(this.responseText)
-                });
-            oReq.addEventListener("error", function (error) {
-                reject(error)
-                })
-            oReq.open('POST', 'https://api.s.recruitee.com/c/'+companyId.value+endpoint);
-            oReq.setRequestHeader('authorization', 'Bearer '+apiToken.value);
-            oReq.setRequestHeader('Content-Type', 'application/json');
-            oReq.send(data);
-
-            setTimeout(function () {
-            resolve()
-            }, 1000)
-        })
+  return data;
 }
 
-//CREATE SOURCE TAGS
-function sourceTagsQty() {
-  var sourceTagsQuantity = document.getElementById('sourceTagsQuantity').value = sourceTagsQuantity
-}
+//Generate body for source tags
+function sourceTagsBody() {
+  const numberOfObjectsToCreate = document.getElementById("sourceTagsQuantity")
+    .value;
 
-function addSourceTags() {
-
-  const length = sourceTagsQuantity.value;
-
-  let sourceTags = new Array(length);
-      for(let i=0; i<length ;i++){
-        sourceTags[i] = faker.fake("{{name.jobDescriptor}} {{name.jobArea}}")
+  let objects = new Array(numberOfObjectsToCreate);
+  for (let i = 0; i < numberOfObjectsToCreate; i++) {
+    objects[i] = faker.fake("{{name.jobDescriptor}} {{name.jobArea}}");
   }
-  let endpoint = '/sources'
 
   var data = JSON.stringify({
-      "sources":sourceTags
+    tags:objects,
   });
 
-        new Promise(function (resolve, reject) {
-        var oReq = new XMLHttpRequest();
-
-            oReq.addEventListener("load", function () {
-            resolve(this.responseText)
-                });
-            oReq.addEventListener("error", function (error) {
-                reject(error)
-                })
-            oReq.open('POST', 'https://api.s.recruitee.com/c/'+companyId.value+endpoint);
-            oReq.setRequestHeader('authorization', 'Bearer '+apiToken.value);
-            oReq.setRequestHeader('Content-Type', 'application/json');
-            oReq.send(data);
-
-            setTimeout(function () {
-            resolve()
-            }, 1000)
-        })
+  return data;
 }
 
+//Generate body for job tags
+function offerTagsBody() {
+  const numberOfObjectsToCreate = document.getElementById("sourceTagsQuantity")
+    .value;
 
-// CREATE JOBS TAGS
-function jobsTagsQty() {
-  var jobsTagsQuantity = document.getElementById('jobsTagsQuantity').value = jobsTagsQuantity
-}
-
-function addJobsTags() {
-
-  const length = jobsTagsQuantity.value;
-
-  let jobsTags = new Array(length);
-      for(let i=0; i<length ;i++){
-        jobsTags[i] = faker.fake("{{name.jobDescriptor}} {{name.jobArea}}")
+  let objects = new Array(numberOfObjectsToCreate);
+  for (let i = 0; i < numberOfObjectsToCreate; i++) {
+    objects[i] = faker.fake("{{name.jobDescriptor}} {{name.jobArea}}");
   }
-  let endpoint = '/offer_tags'
 
   var data = JSON.stringify({
-      "offer_tags":jobsTags
+    tags: objects,
   });
 
-        new Promise(function (resolve, reject) {
-        var oReq = new XMLHttpRequest();
-
-            oReq.addEventListener("load", function () {
-            resolve(this.responseText)
-                });
-            oReq.addEventListener("error", function (error) {
-                reject(error)
-                })
-            oReq.open('POST', 'https://api.s.recruitee.com/c/'+companyId.value+endpoint);
-            oReq.setRequestHeader('authorization', 'Bearer '+apiToken.value);
-            oReq.setRequestHeader('Content-Type', 'application/json');
-            oReq.send(data);
-
-            setTimeout(function () {
-            resolve()
-            }, 1000)
-        })
+  return data;
 }
 
+//Perform request
+function performRequest(endpoint, body) {
+  new Promise(function (resolve, reject) {
+    var oReq = new XMLHttpRequest();
 
+    oReq.addEventListener("load", function () {
+      resolve(this.responseText);
+    });
+    oReq.addEventListener("error", function (error) {
+      reject(error);
+    });
+    oReq.open(
+      "POST",
+      "https://api.s.recruitee.com/c/" + companyId.value + endpoint
+    );
+    oReq.setRequestHeader("authorization", "Bearer " + apiToken.value);
+    oReq.setRequestHeader("Content-Type", "application/json");
+    oReq.send(body);
+
+    setTimeout(function () {
+      resolve();
+    }, 1000);
+  });
+}
