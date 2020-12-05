@@ -17,7 +17,9 @@ function fireRequests(event) {
   performRequestTags("/sources", sourceTagsBody());
   performRequestTags("/offer_tags", offerTagsBody());
   performRequest("/departments", departmentsBody(), "departmentsQuantity");
-  performRequest("/disqualify_reasons", disqualifyReasonsBody(), "disqualifyReasonsQuantity")
+  performRequest("/disqualify_reasons", disqualifyReasonsBody(), "disqualifyReasonsQuantity");
+  performRequest("/offers", offersBody(), "jobsQuantity");
+  performRequest("/offers", talentPoolsBody(), "talentpoolsQuantity")
 }
 
 //Perform request for tags, sources, offer tags
@@ -37,6 +39,7 @@ function performRequestTags(endpoint, body) {
     );
     oReq.setRequestHeader("authorization", "Bearer " + apiToken.value);
     oReq.setRequestHeader("Content-Type", "application/json");
+    oReq.setRequestHeader('x-json-accent', 'pascal');
     oReq.send(body);
 
     setTimeout(function () {
@@ -120,7 +123,43 @@ function disqualifyReasonsBody() {
   return data;
 }
 
-//Perform request for departments, disqualify reason,
+//Generate body for offer
+function offersBody() {
+
+  var data = JSON.stringify({
+    offer: {
+      title: faker.fake("{{name.jobDescriptor}} {{random.number}}"),
+      city: faker.fake("{{name.jobDescriptor}}"),
+      countryCode: "PL",
+      stateCode: "DS",
+      postalCode: faker.fake("{{address.zipCode}}"),
+      description: faker.fake("{{lorem.lines}}"),
+      requirements: faker.fake("{{lorem.paragraph}}"),
+      employmentType: "temporary",
+      category: "administrative",
+      education: "high_school",
+      experience: "student_college"
+    }
+  });
+
+  return data;
+}
+
+//Generate body for talent pool
+function talentPoolsBody() {
+
+  var data = JSON.stringify({
+    offer: {
+      title: faker.fake("{{name.jobDescriptor}} {{random.number}}"),
+      kind: "talent_pool"
+    }
+  });
+
+  return data;
+}
+
+
+//Perform request for departments, disqualify reason, offer
 function performRequest(endpoint, body, quantitySelector) {
 
   var numberOfObjectsToCreate = document.getElementById(quantitySelector)
