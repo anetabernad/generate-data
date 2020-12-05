@@ -13,17 +13,17 @@ form {
   padding: 20px;
   margin: 20px;
   background: #e5ebef;
-  color: #718497;
+  color: #1f2b38;
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
   border-radius: 4px;
   border-color: #b6c4cc;
   width: 600px;
 }
+
 form label,
 form input,
 form button {
-  border: 0;
   margin-bottom: 3px;
   display: block;
   width: 100%;
@@ -37,7 +37,8 @@ form input {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-  width: 20%;
+  width: 30%;
+  border: 0px
 }
 form button {
   height: 30px;
@@ -48,11 +49,11 @@ form button {
   cursor: pointer;
   width: 20%;
   border-radius: 4px;
+  border: 0px
 }
 
 form button:hover {
   background: #0d5b88;;
-
 }
 
 
@@ -84,5 +85,17 @@ input[type=number] {
   width: 75%;
   margin-top: 6px;
 }
+
+.companyData {
+  padding: 12px 12px 12px 12px;
+  margin-bottom: 12px;
+  display: block;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  background: #d2dde5;
+  border-color: #b6c4cc;
+}
+
 
 
