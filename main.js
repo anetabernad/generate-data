@@ -9,10 +9,10 @@ function getApiToken() {
 
 //Event listener
 var generate_btn = document.querySelector("#generate_btn");
-generate_btn.addEventListener("click", fireRequests());
+generate_btn.addEventListener("click", fireRequests);
 
 function fireRequests(event) {
-//   event.preventDefault(); ->> ERROR
+  event.preventDefault();
   performRequest("/tags", tagsBody());
   performRequest("/sources", sourceTagsBody());
   performRequest("/offer_tags", offerTagsBody());
@@ -20,41 +20,7 @@ function fireRequests(event) {
 
 //Generate body for tags
 function tagsBody() {
-  var numberOfObjectsToCreate = document.getElementById("tagsQuantity").value ;
-
-  let objects = new Array(numberOfObjectsToCreate);
-  for (let i = 0; i < numberOfObjectsToCreate; i++) {
-    objects[i] = faker.fake("{{name.jobDescriptor}} {{name.jobArea}}");
-  }
-
-  var data = JSON.stringify({
-    tags:objects
-  });
-
-  return data;
-}
-
-//Generate body for source tags
-function sourceTagsBody() {
-  const numberOfObjectsToCreate = document.getElementById("sourceTagsQuantity")
-    .value;
-
-  let objects = new Array(numberOfObjectsToCreate);
-  for (let i = 0; i < numberOfObjectsToCreate; i++) {
-    objects[i] = faker.fake("{{name.jobDescriptor}} {{name.jobArea}}");
-  }
-
-  var data = JSON.stringify({
-    tags:objects,
-  });
-
-  return data;
-}
-
-//Generate body for job tags
-function offerTagsBody() {
-  const numberOfObjectsToCreate = document.getElementById("sourceTagsQuantity")
-    .value;
+  var numberOfObjectsToCreate = document.getElementById("tagsQuantity").value;
 
   let objects = new Array(numberOfObjectsToCreate);
   for (let i = 0; i < numberOfObjectsToCreate; i++) {
@@ -63,6 +29,40 @@ function offerTagsBody() {
 
   var data = JSON.stringify({
     tags: objects,
+  });
+
+  return data;
+}
+
+//Generate body for source tags
+function sourceTagsBody() {
+  var numberOfObjectsToCreate = document.getElementById("sourceTagsQuantity")
+    .value;
+
+  let objects = new Array(numberOfObjectsToCreate);
+  for (let i = 0; i < numberOfObjectsToCreate; i++) {
+    objects[i] = faker.fake("{{name.jobDescriptor}} {{name.jobArea}}");
+  }
+
+  var data = JSON.stringify({
+    sources: objects,
+  });
+
+  return data;
+}
+
+//Generate body for job tags
+function offerTagsBody() {
+  var numberOfObjectsToCreate = document.getElementById("jobsTagsQuantity")
+    .value;
+
+  let objects = new Array(numberOfObjectsToCreate);
+  for (let i = 0; i < numberOfObjectsToCreate; i++) {
+    objects[i] = faker.fake("{{name.jobDescriptor}} {{name.jobArea}}");
+  }
+
+  var data = JSON.stringify({
+    offer_tags: objects,
   });
 
   return data;
