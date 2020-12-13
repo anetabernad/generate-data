@@ -1,14 +1,14 @@
 //Get company id
 function getCompanyId() {
-  var companyId = (document.getElementById("companyId").value = companyId);
+  let companyId = (document.getElementById("companyId").value = companyId);
 }
 //Get token
 function getApiToken() {
-  var apiToken = (document.getElementById("apiToken").value = apiToken);
+  let apiToken = (document.getElementById("apiToken").value = apiToken);
 }
 
 //Event listener
-var generate_btn = document.querySelector("#generate_btn");
+let generate_btn = document.querySelector("#generate_btn");
 generate_btn.addEventListener("click", fireRequests);
 
 function fireRequests(event) {
@@ -23,13 +23,14 @@ function fireRequests(event) {
   );
   performRequestJobs("/offers", "jobsQuantity");
   performRequestTalentPools("/offers", "talentpoolsQuantity");
-  performRequestCandidates("/candidates", "candidatesQuantity");
+  performRequest2("/candidates", candidatesBody());
+
 }
 
 //Perform request for tags, sources, offer tags
 function performRequest(endpoint, body) {
   new Promise(function (resolve, reject) {
-    var oReq = new XMLHttpRequest();
+    let oReq = new XMLHttpRequest();
 
     oReq.addEventListener("load", function () {
       resolve(this.responseText);
@@ -54,14 +55,14 @@ function performRequest(endpoint, body) {
 
 //Generate body for tags
 function tagsBody() {
-  var numberOfObjectsToCreate = document.getElementById("tagsQuantity").value;
+  let numberOfObjectsToCreate = document.getElementById("tagsQuantity").value;
 
   let objects = new Array(numberOfObjectsToCreate);
   for (let i = 0; i < numberOfObjectsToCreate; i++) {
     objects[i] = faker.fake("{{name.jobDescriptor}} {{name.jobArea}}");
   }
 
-  var data = JSON.stringify({
+  let data = JSON.stringify({
     tags: objects,
   });
 
@@ -70,7 +71,7 @@ function tagsBody() {
 
 //Generate body for source tags
 function sourceTagsBody() {
-  var numberOfObjectsToCreate = document.getElementById("sourceTagsQuantity")
+  let numberOfObjectsToCreate = document.getElementById("sourceTagsQuantity")
     .value;
 
   let objects = new Array(numberOfObjectsToCreate);
@@ -78,7 +79,7 @@ function sourceTagsBody() {
     objects[i] = faker.fake("{{name.jobDescriptor}} {{name.jobArea}}");
   }
 
-  var data = JSON.stringify({
+  let data = JSON.stringify({
     sources: objects,
   });
 
@@ -87,7 +88,7 @@ function sourceTagsBody() {
 
 //Generate body for job tags
 function offerTagsBody() {
-  var numberOfObjectsToCreate = document.getElementById("jobsTagsQuantity")
+  let numberOfObjectsToCreate = document.getElementById("jobsTagsQuantity")
     .value;
 
   let objects = new Array(numberOfObjectsToCreate);
@@ -95,7 +96,7 @@ function offerTagsBody() {
     objects[i] = faker.fake("{{name.jobDescriptor}} {{name.jobArea}}");
   }
 
-  var data = JSON.stringify({
+  let data = JSON.stringify({
     offer_tags: objects,
   });
 
@@ -107,10 +108,10 @@ function offerTagsBody() {
 //Perform request for talent pool
 
 function performRequestTalentPools(endpoint, quantitySelector) {
-  var numberOfObjectsToCreate = document.getElementById(quantitySelector).value;
+  let numberOfObjectsToCreate = document.getElementById(quantitySelector).value;
 
-  for (var i = 0; i < numberOfObjectsToCreate; i++) {
-    var body = JSON.stringify({
+  for (let i = 0; i < numberOfObjectsToCreate; i++) {
+    let body = JSON.stringify({
       offer: {
         title: faker.fake("{{name.jobTitle}}"),
         kind: "talent_pool",
@@ -118,7 +119,7 @@ function performRequestTalentPools(endpoint, quantitySelector) {
     });
 
     new Promise(function (resolve, reject) {
-      var oReq = new XMLHttpRequest();
+      let oReq = new XMLHttpRequest();
 
       oReq.addEventListener("load", function () {
         resolve(this.responseText);
@@ -144,10 +145,10 @@ function performRequestTalentPools(endpoint, quantitySelector) {
 
 //Perform request for Job
 function performRequestJobs(endpoint, quantitySelector) {
-  var numberOfObjectsToCreate = document.getElementById(quantitySelector).value;
+  let numberOfObjectsToCreate = document.getElementById(quantitySelector).value;
 
-  for (var i = 0; i < numberOfObjectsToCreate; i++) {
-    var body = JSON.stringify({
+  for (let i = 0; i < numberOfObjectsToCreate; i++) {
+    let body = JSON.stringify({
       offer: {
         title: faker.fake("{{name.jobTitle}}"),
         city: faker.fake("{{address.city}}"),
@@ -164,7 +165,7 @@ function performRequestJobs(endpoint, quantitySelector) {
     });
 
     new Promise(function (resolve, reject) {
-      var oReq = new XMLHttpRequest();
+      let oReq = new XMLHttpRequest();
 
       oReq.addEventListener("load", function () {
         resolve(this.responseText);
@@ -190,17 +191,17 @@ function performRequestJobs(endpoint, quantitySelector) {
 
 //Perform request for disqualify reason
 function performRequestDisqualifyReaons(endpoint, quantitySelector) {
-  var numberOfObjectsToCreate = document.getElementById(quantitySelector).value;
+  let numberOfObjectsToCreate = document.getElementById(quantitySelector).value;
 
-  for (var i = 0; i < numberOfObjectsToCreate; i++) {
-    var body = JSON.stringify({
+  for (let i = 0; i < numberOfObjectsToCreate; i++) {
+    let body = JSON.stringify({
       disqualifyReason: {
         name: faker.fake("{{name.jobDescriptor}} {{name.jobArea}}"),
       },
     });
 
     new Promise(function (resolve, reject) {
-      var oReq = new XMLHttpRequest();
+      let oReq = new XMLHttpRequest();
 
       oReq.addEventListener("load", function () {
         resolve(this.responseText);
@@ -226,17 +227,17 @@ function performRequestDisqualifyReaons(endpoint, quantitySelector) {
 
 //Perform request for department
 function performRequestDepartments(endpoint, quantitySelector) {
-  var numberOfObjectsToCreate = document.getElementById(quantitySelector).value;
+  let numberOfObjectsToCreate = document.getElementById(quantitySelector).value;
 
-  for (var i = 0; i < numberOfObjectsToCreate; i++) {
-    var body = JSON.stringify({
+  for (let i = 0; i < numberOfObjectsToCreate; i++) {
+    let body = JSON.stringify({
       department: {
         name: faker.fake("{{name.jobDescriptor}} {{name.jobArea}}"),
       },
     });
 
     new Promise(function (resolve, reject) {
-      var oReq = new XMLHttpRequest();
+      let oReq = new XMLHttpRequest();
 
       oReq.addEventListener("load", function () {
         resolve(this.responseText);
@@ -260,18 +261,24 @@ function performRequestDepartments(endpoint, quantitySelector) {
   }
 }
 
+
 function performRequestCandidates(endpoint, quantitySelector) {
-  var numberOfObjectsToCreate = document.getElementById(quantitySelector).value;
+  let numberOfObjectsToCreate = document.getElementById(quantitySelector).value;
 
-  for (var i = 0; i < numberOfObjectsToCreate; i++) {
+  for (let i = 0; i < numberOfObjectsToCreate; i++) {
+    let body = JSON.stringify({
+      candidate: {
+        name: faker.fake("{{name.findName}}"),
+        coverLetter: faker.fake("{{lorem.paragraph}}"),
+        email: faker.fake("{{internet.email}}"),
+        phone: faker.fake("{{phone.phoneNumber}}"),
+        photoUrl: faker.fake("{{image.avatar}}"),
+        referrer: "data generator"
+      },
+    });
+
     new Promise(function (resolve, reject) {
-      var data = new FormData();
-      data.append("candidate[name]", faker.fake("{{name.findName}}"));
-      data.append("candidate[coverLetter]", faker.fake("{{lorem.paragraph}}"));
-      data.append("candidate[emails][]", faker.fake("{{internet.email}}"));
-      data.append("candidate[phones][]", faker.fake("{{phone.phoneNumber}}"));
-
-      var oReq = new XMLHttpRequest();
+      let oReq = new XMLHttpRequest();
 
       oReq.addEventListener("load", function () {
         resolve(this.responseText);
@@ -284,8 +291,9 @@ function performRequestCandidates(endpoint, quantitySelector) {
         "https://api.s.recruitee.com/c/" + companyId.value + endpoint
       );
       oReq.setRequestHeader("authorization", "Bearer " + apiToken.value);
+      oReq.setRequestHeader("Content-Type", "application/json");
       oReq.setRequestHeader("x-json-accent", "pascal");
-      oReq.send(data);
+      oReq.send(body);
 
       setTimeout(function () {
         resolve();
@@ -293,97 +301,57 @@ function performRequestCandidates(endpoint, quantitySelector) {
     });
   }
 }
+//
 
-//////
+function candidatesBody() {
+  let numberOfObjectsToCreate = document.getElementById("candidatesQuantity").value;
 
-// //Generate body for department
-// function departmentsBody() {
+  let objects = new Array(numberOfObjectsToCreate);
+  for (let i = 0; i < numberOfObjectsToCreate; i++) {
+    objects[i] = {
+      candidate:{
+        name: faker.fake("{{name.findName}}"),
+        coverLetter: faker.fake("{{lorem.paragraph}}"),
+        email: faker.fake("{{internet.email}}"),
+        phone: faker.fake("{{phone.phoneNumber}}"),
+        photoUrl: faker.fake("{{image.avatar}}"),
+        referrer: "data generator"
+      }
+    }
+  };
 
-//   var data = JSON.stringify({
-//     department: {
-//       name: faker.fake("{{name.jobDescriptor}} {{name.jobArea}}")
-//     }
-//   });
+  return objects
 
-//   return data;
-// }
+}
 
-// //Generate body for disqualify reasons
-// function disqualifyReasonsBody() {
+function performRequest2(endpoint, data) {
 
-//   var data = JSON.stringify({
-//     disqualifyReason: {
-//       name: faker.fake("{{name.jobDescriptor}} {{name.jobArea}}")
-//     }
-//   });
 
-//   return data;
-// }
+  for (var i =0; i < data.length; i++){
+    var body = JSON.stringify(data[i]);
 
-// //Generate body for offer
-// function offersBody() {
 
-//   var data = JSON.stringify({
-//     offer: {
-//       title: faker.fake("{{name.jobTitle}}"),
-//       city: faker.fake("{{address.city}}"),
-//       countryCode: "PL",
-//       stateCode: "DS",
-//       postalCode: faker.fake("{{address.zipCode}}"),
-//       description: faker.fake("{{lorem.lines}}"),
-//       requirements: faker.fake("{{lorem.paragraph}}"),
-//       employmentType: "temporary",
-//       category: "administrative",
-//       education: "high_school",
-//       experience: "student_college"
-//     }
-//   });
+    new Promise(function (resolve, reject) {
+      let oReq = new XMLHttpRequest();
 
-//   return data;
-// }
+      oReq.addEventListener("load", function () {
+        resolve(this.responseText);
+      });
+      oReq.addEventListener("error", function (error) {
+        reject(error);
+      });
+      oReq.open(
+        "POST",
+        "https://api.s.recruitee.com/c/" + companyId.value + endpoint
+      );
+      oReq.setRequestHeader("authorization", "Bearer " + apiToken.value);
+      oReq.setRequestHeader("Content-Type", "application/json");
+      oReq.setRequestHeader("x-json-accent", "pascal");
+      oReq.send(body);
 
-// //Generate body for talent pool
-// function talentPoolsBody() {
-
-//   var data = JSON.stringify({
-//     offer: {
-//       title: faker.fake("{{name.jobTitle}}"),
-//       kind: "talent_pool"
-//     }
-//   });
-
-//   return data;
-// }
-
-// //Perform request for departments, disqualify reason, offer
-// function performRequest(endpoint, body, quantitySelector) {
-
-//   var numberOfObjectsToCreate = document.getElementById(quantitySelector)
-//   .value;
-
-//   for (var i =0; i < numberOfObjectsToCreate; i++){
-
-//     new Promise(function (resolve, reject) {
-//       var oReq = new XMLHttpRequest();
-
-//       oReq.addEventListener("load", function () {
-//         resolve(this.responseText);
-//       });
-//       oReq.addEventListener("error", function (error) {
-//         reject(error);
-//       });
-//       oReq.open(
-//         "POST",
-//         "https://api.s.recruitee.com/c/" + companyId.value + endpoint
-//       );
-//       oReq.setRequestHeader("authorization", "Bearer " + apiToken.value);
-//       oReq.setRequestHeader("Content-Type", "application/json");
-//       oReq.setRequestHeader('x-json-accent', 'pascal');
-//       oReq.send(body);
-
-//       setTimeout(function () {
-//         resolve();
-//       }, 1000);
-//     });
-//   };
-// }
+      setTimeout(function () {
+        resolve();
+      }, 1000);
+    });
+  }
+}
