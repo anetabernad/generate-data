@@ -1,7 +1,11 @@
-//Generate body for tags
-function tagsBody() {
-  let numberOfObjectsToCreate = document.getElementById("tagsQuantity").value;
+function numberOfObjectsToCreate(selector) {
+  let numberOfObjectsToCreate = document.getElementById(selector).value;
 
+  return numberOfObjectsToCreate;
+}
+
+//Generate body for tags
+function tagsBody(numberOfObjectsToCreate) {
   let objects = new Array(numberOfObjectsToCreate);
   for (let i = 0; i < numberOfObjectsToCreate; i++) {
     objects[i] = faker.fake("{{name.jobDescriptor}} {{name.jobArea}}");
@@ -15,10 +19,7 @@ function tagsBody() {
 }
 
 //Generate body for source tags
-function sourceTagsBody() {
-  let numberOfObjectsToCreate = document.getElementById("sourceTagsQuantity")
-    .value;
-
+function sourceTagsBody(numberOfObjectsToCreate) {
   let objects = new Array(numberOfObjectsToCreate);
   for (let i = 0; i < numberOfObjectsToCreate; i++) {
     objects[i] = faker.fake("{{name.jobDescriptor}} {{name.jobArea}}");
@@ -32,10 +33,7 @@ function sourceTagsBody() {
 }
 
 //Generate body for job tags
-function offerTagsBody() {
-  let numberOfObjectsToCreate = document.getElementById("jobsTagsQuantity")
-    .value;
-
+function offerTagsBody(numberOfObjectsToCreate) {
   let objects = new Array(numberOfObjectsToCreate);
   for (let i = 0; i < numberOfObjectsToCreate; i++) {
     objects[i] = faker.fake("{{name.jobDescriptor}} {{name.jobArea}}");
@@ -49,10 +47,7 @@ function offerTagsBody() {
 }
 
 //Generate body for departments
-function departmentsBody() {
-  let numberOfObjectsToCreate = document.getElementById("departmentsQuantity")
-    .value;
-
+function departmentsBody(numberOfObjectsToCreate) {
   let objects = new Array(numberOfObjectsToCreate);
   for (let i = 0; i < numberOfObjectsToCreate; i++) {
     objects[i] = {
@@ -65,11 +60,7 @@ function departmentsBody() {
 }
 
 //Generate body for disqualify reasons
-function disqualifyReasonsBody() {
-  let numberOfObjectsToCreate = document.getElementById(
-    "disqualifyReasonsQuantity"
-  ).value;
-
+function disqualifyReasonsBody(numberOfObjectsToCreate) {
   let objects = new Array(numberOfObjectsToCreate);
   for (let i = 0; i < numberOfObjectsToCreate; i++) {
     objects[i] = {
@@ -82,9 +73,7 @@ function disqualifyReasonsBody() {
 }
 
 //Generate body for offers
-function offersBody() {
-  let numberOfObjectsToCreate = document.getElementById("jobsQuantity").value;
-
+function offersBody(numberOfObjectsToCreate) {
   let objects = new Array(numberOfObjectsToCreate);
   for (let i = 0; i < numberOfObjectsToCreate; i++) {
     objects[i] = {
@@ -107,10 +96,7 @@ function offersBody() {
 }
 
 //Generate body for talent pools
-function talentPoolsBody() {
-  let numberOfObjectsToCreate = document.getElementById("talentpoolsQuantity")
-    .value;
-
+function talentPoolsBody(numberOfObjectsToCreate) {
   let objects = new Array(numberOfObjectsToCreate);
   for (let i = 0; i < numberOfObjectsToCreate; i++) {
     objects[i] = {
@@ -124,10 +110,7 @@ function talentPoolsBody() {
 }
 
 //Generate body for candidates
-function candidatesBody() {
-  let numberOfObjectsToCreate = document.getElementById("candidatesQuantity")
-    .value;
-
+function candidatesBody(numberOfObjectsToCreate) {
   let objects = new Array(numberOfObjectsToCreate);
   for (let i = 0; i < numberOfObjectsToCreate; i++) {
     objects[i] = {
