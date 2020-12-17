@@ -5,9 +5,9 @@ function numberOfObjectsToCreate(selector) {
 }
 
 //Generate body for tags
-function tagsBody(numberOfObjectsToCreate) {
-  let objects = new Array(numberOfObjectsToCreate);
-  for (let i = 0; i < numberOfObjectsToCreate; i++) {
+function tagsBody(field) {
+  const objects = [];
+  for (let i = 0; i < numberOfObjectsToCreate(field); i++) {
     objects[i] = faker.fake("{{name.jobDescriptor}} {{name.jobArea}}");
   }
 
@@ -19,9 +19,9 @@ function tagsBody(numberOfObjectsToCreate) {
 }
 
 //Generate body for source tags
-function sourceTagsBody(numberOfObjectsToCreate) {
-  let objects = new Array(numberOfObjectsToCreate);
-  for (let i = 0; i < numberOfObjectsToCreate; i++) {
+function sourceTagsBody(field) {
+  const objects = [];
+  for (let i = 0; i < numberOfObjectsToCreate(field); i++) {
     objects[i] = faker.fake("{{name.jobDescriptor}} {{name.jobArea}}");
   }
 
@@ -33,9 +33,9 @@ function sourceTagsBody(numberOfObjectsToCreate) {
 }
 
 //Generate body for job tags
-function offerTagsBody(numberOfObjectsToCreate) {
-  let objects = new Array(numberOfObjectsToCreate);
-  for (let i = 0; i < numberOfObjectsToCreate; i++) {
+function offerTagsBody(field) {
+  const objects = [];
+  for (let i = 0; i < numberOfObjectsToCreate(field); i++) {
     objects[i] = faker.fake("{{name.jobDescriptor}} {{name.jobArea}}");
   }
 
@@ -47,9 +47,9 @@ function offerTagsBody(numberOfObjectsToCreate) {
 }
 
 //Generate body for departments
-function departmentsBody(numberOfObjectsToCreate) {
-  let objects = new Array(numberOfObjectsToCreate);
-  for (let i = 0; i < numberOfObjectsToCreate; i++) {
+function departmentsBody(field) {
+  const objects = [];
+  for (let i = 0; i < numberOfObjectsToCreate(field); i++) {
     objects[i] = {
       department: {
         name: faker.fake("{{name.jobDescriptor}} {{name.jobArea}}"),
@@ -60,9 +60,9 @@ function departmentsBody(numberOfObjectsToCreate) {
 }
 
 //Generate body for disqualify reasons
-function disqualifyReasonsBody(numberOfObjectsToCreate) {
-  let objects = new Array(numberOfObjectsToCreate);
-  for (let i = 0; i < numberOfObjectsToCreate; i++) {
+function disqualifyReasonsBody(field) {
+  const objects = [];
+  for (let i = 0; i < numberOfObjectsToCreate(field); i++) {
     objects[i] = {
       disqualifyReason: {
         name: faker.fake("{{name.jobDescriptor}} {{name.jobArea}}"),
@@ -73,10 +73,10 @@ function disqualifyReasonsBody(numberOfObjectsToCreate) {
 }
 
 //Generate body for offers
-function offersBody(numberOfObjectsToCreate) {
-  let objects = new Array(numberOfObjectsToCreate);
-  for (let i = 0; i < numberOfObjectsToCreate; i++) {
-    objects[i] = {
+function offersBody(field) {
+  const objects = [];
+  for (let i = 0; i < numberOfObjectsToCreate(field); i++) {
+    objects.push({
       offer: {
         title: faker.fake("{{name.jobTitle}}"),
         city: faker.fake("{{address.city}}"),
@@ -90,15 +90,15 @@ function offersBody(numberOfObjectsToCreate) {
         education: "high_school",
         experience: "student_college",
       },
-    };
+    });
   }
   return objects;
 }
 
 //Generate body for talent pools
-function talentPoolsBody(numberOfObjectsToCreate) {
-  let objects = new Array(numberOfObjectsToCreate);
-  for (let i = 0; i < numberOfObjectsToCreate; i++) {
+function talentPoolsBody(field) {
+  const objects = [];
+  for (let i = 0; i < numberOfObjectsToCreate(field); i++) {
     objects[i] = {
       offer: {
         title: faker.fake("{{name.jobTitle}}"),
@@ -110,9 +110,9 @@ function talentPoolsBody(numberOfObjectsToCreate) {
 }
 
 //Generate body for candidates
-function candidatesBody(numberOfObjectsToCreate) {
-  let objects = new Array(numberOfObjectsToCreate);
-  for (let i = 0; i < numberOfObjectsToCreate; i++) {
+function candidatesBody(field) {
+  const objects = [];
+  for (let i = 0; i < numberOfObjectsToCreate(field); i++) {
     objects[i] = {
       candidate: {
         name: faker.fake("{{name.findName}}"),
