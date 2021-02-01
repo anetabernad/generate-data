@@ -44,11 +44,11 @@ function fireRequests(event) {
 }
 
 //Perform requests in queue (candidates, offers, tp, disqualify reasons, departments)
-const request = function performRequest2(endpoint, data, enviromentUrl) {
+function performRequest2(endpoint, data, enviromentUrl) {
   for (i = 0; i < data.length; i++) {
     let body = JSON.stringify(data[i]);
 
-    const requestPromise = new Promise((resolve, reject) => {
+    const requestPromise = new PendingPromise((resolve, reject) => {
       let oReq = new XMLHttpRequest();
       oReq.addEventListener("loadend", function () {
         console.log("Request finished", i);
@@ -64,6 +64,8 @@ const request = function performRequest2(endpoint, data, enviromentUrl) {
       oReq.setRequestHeader("x-json-accent", "pascal");
       oReq.send(body);
     });
+
+    Queue.enqueue(requestPromise);
 
 
   }
