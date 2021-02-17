@@ -6,12 +6,14 @@ class PendingPromise {
 
   execute() {
     return new Promise(this.args);
+
   }
 }
 
 class Queue {
   static queue = [];
   static pendingPromise = false;
+  static errors = [];
 
   static enqueue(promise) {
     return new Promise((resolve, reject) => {
@@ -31,24 +33,32 @@ class Queue {
       return false;
     }
     const item = this.queue.shift();
-    
     if (!item) {
+      console.log("Done");
+      generate_btn.removeAttribute("disabled");
+      alert_success.removeAttribute("hidden");
+      generate_btn.innerHTML= "Generate";
       return false;
+
     }
     try {
       this.workingOnPromise = true;
       console.log("starts");
       item.promise.execute()
         .then((value) => {
-          console.log("resolved");
           this.workingOnPromise = false;
           item.resolve(value);
           console.log("resolved");
-          console.log(value);
+          // console.log(value);
+          console.log("QUEUE LENGTH : " + this.queue.length);
+          generate_btn.innerHTML= "Generating data... " + this.queue.length;
           this.dequeue();
         })
         .catch(err => {
           console.log("error");
+          console.log(this.err);
+          this.errors.push(err);
+
           this.workingOnPromise = false;
           item.reject(err);
           this.dequeue();
@@ -59,6 +69,6 @@ class Queue {
       item.reject(err);
       this.dequeue();
     }
-    return true;
-  }
+
+    return true;  }
 }

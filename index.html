@@ -7,20 +7,22 @@
     <title>Recruitee Data Generator</title>
 
     <link href="style.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
     />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Faker/3.1.0/faker.min.js" integrity="sha512-/seDHxVfh1NvFUscAj8GsHQVZJvr2jjAoYsNL7As2FCaFHUHYIarl3sRCvVlFgyouVNiRgHIebyLKjpgd1SLDw==" crossorigin="anonymous"></script>"
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Faker/3.1.0/faker.min.js" integrity="sha512-/seDHxVfh1NvFUscAj8GsHQVZJvr2jjAoYsNL7As2FCaFHUHYIarl3sRCvVlFgyouVNiRgHIebyLKjpgd1SLDw==" crossorigin="anonymous"></script>
+
   </head>
 
   <body>
     <div>
-      <img
+      <!-- <img
         src="file:///Users/anetabernad/projects/generate-data/assets/logo_horizontal_light%20blue_rgba.png"
         width="200px"
-      />
+      /> -->
       <div class="title">Recruitee Data Generator</div>
     </div>
     <form>
@@ -62,8 +64,9 @@
             id="tagsQuantity"
             name="tagsQuantity"
             placeholder="Quantity"
+            value="20"
             min="0"
-            max="1000"
+            max="5000"
           />
         </div>
         <div class="col-25">
@@ -75,8 +78,9 @@
             id="sourceTagsQuantity"
             name="sourceTagsQuantity"
             placeholder="Quantity"
+            value="20"
             min="0"
-            max="1000"
+            max="5000"
           />
         </div>
         <div class="col-25">
@@ -88,8 +92,9 @@
             id="jobsTagsQuantity"
             name="jobsTagsQuantity"
             placeholder="Quantity"
+            value="20"
             min="0"
-            max="1000"
+            max="5000"
           />
         </div>
         <div class="col-25">
@@ -101,8 +106,9 @@
             id="disqualifyReasonsQuantity"
             name="disqualifyReasonsQuantity"
             placeholder="Quantity"
+            value="2"
             min="0"
-            max="20"
+            max="500"
           />
         </div>
         <div class="col-25">
@@ -114,8 +120,9 @@
             id="departmentsQuantity"
             name="departmentsQuantity"
             placeholder="Quantity"
+            value="2"
             min="0"
-            max="20"
+            max="1000"
           />
         </div>
         <div class="col-25">
@@ -127,8 +134,9 @@
             id="candidatesQuantity"
             name="candidatesQuantity"
             placeholder="Quantity"
+            value="2"
             min="0"
-            max="20"
+            max="1000"
           />
         </div>
         <div class="col-25">
@@ -140,6 +148,7 @@
             id="jobsQuantity"
             name="jobsQuantity"
             placeholder="Quantity"
+            value="2"
             min="0"
             max="20"
           />
@@ -153,15 +162,21 @@
             id="talentpoolsQuantity"
             name="talentpoolsQuantity"
             placeholder="Quantity"
+            value="2"
             min="0"
             max="20"
           />
         </div>
       </fieldset>
-      <div>
+      <div id="generate">
         <button type="submit" id="generate_btn">Generate</button>
       </div>
     </form>
+    <div id="alert_success" class="alert alert-success alert-dismissible" role="alert" hidden>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
+      </button>
+      <strong>Done!</strong> Your data has been generated.
+    </div>
 
     <script src="main.js"></script>
     <script src="generateData.js"></script>

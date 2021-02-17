@@ -76,7 +76,7 @@ function disqualifyReasonsBody(field) {
 function offersBody(field) {
   const objects = [];
   for (let i = 0; i < numberOfObjectsToCreate(field); i++) {
-    objects.push({
+    objects[i] = {
       offer: {
         title: faker.fake("{{name.jobTitle}}"),
         city: faker.fake("{{address.city}}"),
@@ -90,7 +90,7 @@ function offersBody(field) {
         education: "high_school",
         experience: "student_college",
       },
-    });
+    };
   }
   return objects;
 }

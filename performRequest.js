@@ -51,8 +51,6 @@ function performRequest2(endpoint, data, enviromentUrl) {
     const requestPromise = new PendingPromise((resolve, reject) => {
       let oReq = new XMLHttpRequest();
       oReq.addEventListener("loadend", function () {
-        console.log("Request finished", i);
-        console.log(this.responseText);
         resolve(this.responseText);
       });
       oReq.addEventListener("error", function (error) {
@@ -66,8 +64,6 @@ function performRequest2(endpoint, data, enviromentUrl) {
     });
 
     Queue.enqueue(requestPromise);
-
-
   }
 }
 
@@ -75,7 +71,7 @@ function performRequest2(endpoint, data, enviromentUrl) {
 
 //Perform request for tags, sources, offer tags
 function performRequest(endpoint, body, enviromentUrl) {
-  new Promise(function (resolve, reject) {
+  const requestPromise = new PendingPromise((resolve, reject) => {
     let oReq = new XMLHttpRequest();
 
     oReq.addEventListener("load", function () {
@@ -91,8 +87,8 @@ function performRequest(endpoint, body, enviromentUrl) {
 
     oReq.send(body);
 
-    setTimeout(function () {
-      resolve();
-    }, 1000);
-  });
-}
+
+    });
+    Queue.enqueue(requestPromise);
+  }
+
