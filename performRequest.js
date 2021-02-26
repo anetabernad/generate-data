@@ -1,4 +1,3 @@
-
 //Fire requests
 let generate_btn = document.querySelector("#generate_btn");
 generate_btn.addEventListener("click", fireRequests);
@@ -50,6 +49,12 @@ function performRequest2(endpoint, data, enviromentUrl) {
 
     const requestPromise = new PendingPromise((resolve, reject) => {
       let oReq = new XMLHttpRequest();
+      oReq.onreadystatechange = () => {
+        if (oReq.status === 401 || 403) {
+          console.log(oReq.responseText);
+          handleUnauthorized();
+        }
+      };
       oReq.addEventListener("loadend", function () {
         resolve(this.responseText);
       });
@@ -67,28 +72,45 @@ function performRequest2(endpoint, data, enviromentUrl) {
   }
 }
 
-
-
 //Perform request for tags, sources, offer tags
 function performRequest(endpoint, body, enviromentUrl) {
   const requestPromise = new PendingPromise((resolve, reject) => {
     let oReq = new XMLHttpRequest();
-
     oReq.addEventListener("load", function () {
       resolve(this.responseText);
     });
     oReq.addEventListener("error", function (error) {
       reject(error);
     });
+    oReq.onreadystatechange = () => {
+      if (oReq.status === 401 || 403) {
+        console.log(oReq.responseText);
+        handleUnauthorized();
+      }
+    };
     oReq.open("POST", enviromentUrl + companyId.value + endpoint);
     oReq.setRequestHeader("authorization", "Bearer " + apiToken.value);
     oReq.setRequestHeader("Content-Type", "application/json");
     oReq.setRequestHeader("x-json-accent", "pascal");
-
     oReq.send(body);
+  });
+  Queue.enqueue(requestPromise);
+}
 
+//Handle status
 
-    });
-    Queue.enqueue(requestPromise);
+function handleSuccess() {
+  console.log("SUCCESS STATUS");
+}
+
+function handleUnauthorized() {
+  if (
+    !alert(
+      "Data can't be generated. Check your company id, token and enviroment and try again."
+    )
+  ) {
+    window.location.reload();
   }
+}
 
+function handleUnprocessableEntity() {}

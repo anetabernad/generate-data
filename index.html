@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Recruitee Data Generator</title>
+    <title>recruitee test data generator</title>
 
     <link href="style.css" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -13,175 +13,234 @@
       href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
     />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Faker/3.1.0/faker.min.js" integrity="sha512-/seDHxVfh1NvFUscAj8GsHQVZJvr2jjAoYsNL7As2FCaFHUHYIarl3sRCvVlFgyouVNiRgHIebyLKjpgd1SLDw==" crossorigin="anonymous"></script>
-
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/Faker/3.1.0/faker.min.js"
+      integrity="sha512-/seDHxVfh1NvFUscAj8GsHQVZJvr2jjAoYsNL7As2FCaFHUHYIarl3sRCvVlFgyouVNiRgHIebyLKjpgd1SLDw=="
+      crossorigin="anonymous"
+    ></script>
   </head>
 
   <body>
-    <div>
+    <div class="header">
       <!-- <img
         src="file:///Users/anetabernad/projects/generate-data/assets/logo_horizontal_light%20blue_rgba.png"
         width="200px"
       /> -->
-      <div class="title">Recruitee Data Generator</div>
+      <div class="title">recruitee test data generator</div>
     </div>
-    <form>
-      <fieldset>
-        <div class="companyData">
-          <div class="input-group">
-            <div id="radioBtn" class="btn-group">
-              <a
-                class="btn btn-primary btn-sm active"
-                data-toggle="enviroment"
-                data-title="stg"
-                >STG</a
-              >
-              <a
-                class="btn btn-primary btn-sm notActive"
-                data-toggle="enviroment"
-                data-title="prod"
-                >PROD</a
-              >
+    <div class="main">
+      <form>
+        <fieldset>
+          <div class="group">
+            <div class="enviroment-switcher">
+              <label for="enviroment">Enviroment:</label>
+              <div id="radioBtn" class="btn-group">
+                <a
+                  class="btn btn-primary btn-sm active"
+                  data-toggle="enviroment"
+                  data-title="stg"
+                  >STG</a
+                >
+                <a
+                  class="btn btn-primary btn-sm notActive"
+                  data-toggle="enviroment"
+                  data-title="prod"
+                  >PROD</a
+                >
+              </div>
             </div>
-            <input type="hidden" name="happy" id="happy" />
+            <div class="company-data-group">
+              <label for="companyId">Company id:</label>
+              <input
+                type="number"
+                id="companyId"
+                name="companyId"
+                max="999999"
+                value="5052"
+              />
+            </div>
+            <div class="company-data-group">
+              <label for="apiToken">API token:</label>
+              <input
+                type="text"
+                id="apiToken"
+                name="apiToken"
+                value="RVJBd3UybVBxUVNtRzhnQ0F2aExmQT09"
+              />
+            </div>
           </div>
-          <label for="companyId">Company id:</label>
-          <input type="text" id="companyId" name="companyId" value="5052" />
-          <label for="companyId">API token:</label>
-          <input
-            type="text"
-            id="apiToken"
-            name="apiToken"
-            value="RVJBd3UybVBxUVNtRzhnQ0F2aExmQT09"
-          />
+          <div class="group">
+            <div class="row">
+              <div class="checkbox">
+                <input type="checkbox" name="tagsCheckbox" checked />
+                <label for="tagsCheckbox">Tags:</label>
+              </div>
+              <div class="amount">
+                <input
+                  type="number"
+                  id="tagsQuantity"
+                  name="tagsQuantity"
+                  placeholder="Quantity"
+                  value="20"
+                  min="0"
+                  max="1000"
+                />
+              </div>
+            </div>
+            <div class="row">
+              <div class="checkbox">
+                <input type="checkbox" name="sourceTagsCheckbox" checked />
+                <label for="sourceTagsCheckbox">Source tags:</label>
+              </div>
+              <div class="amount">
+                <input
+                  type="number"
+                  id="sourceTagsQuantity"
+                  name="sourceTagsQuantity"
+                  placeholder="Quantity"
+                  value="20"
+                  min="0"
+                  max="5000"
+                />
+              </div>
+            </div>
+            <div class="row">
+              <div class="checkbox">
+                <input type="checkbox" name="jobsTagsCheckbox" checked />
+                <label for="jobsTagsCheckbox">Job tags:</label>
+              </div>
+              <div class="amount">
+                <input
+                  type="number"
+                  id="jobsTagsQuantity"
+                  name="jobsTagsQuantity"
+                  placeholder="Quantity"
+                  value="20"
+                  min="0"
+                  max="1000"
+                />
+              </div>
+            </div>
+            <div class="row">
+              <div class="checkbox">
+                <input
+                  type="checkbox"
+                  name="disqualifyReasonsCheckbox"
+                  checked
+                />
+                <label for="disqualifyReasonsCheckbox"
+                  >Disqualify reasons:</label
+                >
+              </div>
+              <div class="amount">
+                <input
+                  type="number"
+                  id="disqualifyReasonsQuantity"
+                  name="disqualifyReasonsQuantity"
+                  placeholder="Quantity"
+                  value="2"
+                  min="0"
+                  max="500"
+                />
+              </div>
+            </div>
+            <div class="row">
+              <div class="checkbox">
+                <input type="checkbox" name="departmentsCheckbox" checked />
+                <label for="departmentsCheckbox">Departments:</label>
+              </div>
+              <div class="amount">
+                <input
+                  type="number"
+                  id="departmentsQuantity"
+                  name="departmentsQuantity"
+                  placeholder="Quantity"
+                  value="2"
+                  min="0"
+                  max="500"
+                />
+              </div>
+            </div>
+            <div class="row">
+              <div class="checkbox">
+                <input type="checkbox" name="candidatesCheckbox" checked />
+                <label for="candidatesCheckbox">Candidates:</label>
+              </div>
+              <div class="amount">
+                <input
+                  type="number"
+                  id="candidatesQuantity"
+                  name="candidatesQuantity"
+                  placeholder="Quantity"
+                  value="2"
+                  min="0"
+                  max="500"
+                />
+              </div>
+            </div>
+            <div class="row">
+              <div class="checkbox">
+                <input type="checkbox" name="jobsCheckbox" checked />
+                <label for="jobsCheckbox">Jobs:</label>
+              </div>
+              <div class="amount">
+                <input
+                  type="number"
+                  id="jobsQuantity"
+                  name="jobsQuantity"
+                  placeholder="Quantity"
+                  value="2"
+                  min="0"
+                  max="100"
+                />
+              </div>
+            </div>
+            <div class="row">
+              <div class="checkbox">
+                <input type="checkbox" name="talentPoolsCheckbox" checked />
+                <label for="talentPoolsCheckbox">Talent Pools:</label>
+              </div>
+              <div class="amount">
+                <input
+                  type="number"
+                  id="talentpoolsQuantity"
+                  name="talentpoolsQuantity"
+                  placeholder="Quantity"
+                  value="2"
+                  min="0"
+                  max="100"
+                />
+              </div>
+            </div>
+          </div>
+        </fieldset>
+        <div class="generate" id="generate">
+          <button type="submit" id="generate_btn">Generate</button>
         </div>
-        <div class="col-25">
-          <label for="tags">Tags:</label>
-        </div>
-        <div class="col-75">
-          <input
-            type="number"
-            id="tagsQuantity"
-            name="tagsQuantity"
-            placeholder="Quantity"
-            value="20"
-            min="0"
-            max="5000"
-          />
-        </div>
-        <div class="col-25">
-          <label for="sourceTags">Source tags:</label>
-        </div>
-        <div class="col-75">
-          <input
-            type="number"
-            id="sourceTagsQuantity"
-            name="sourceTagsQuantity"
-            placeholder="Quantity"
-            value="20"
-            min="0"
-            max="5000"
-          />
-        </div>
-        <div class="col-25">
-          <label for="jobsTags">Job tags:</label>
-        </div>
-        <div class="col-75">
-          <input
-            type="number"
-            id="jobsTagsQuantity"
-            name="jobsTagsQuantity"
-            placeholder="Quantity"
-            value="20"
-            min="0"
-            max="5000"
-          />
-        </div>
-        <div class="col-25">
-          <label for="disqualifyReasons">Disqualify reasons:</label>
-        </div>
-        <div class="col-75">
-          <input
-            type="number"
-            id="disqualifyReasonsQuantity"
-            name="disqualifyReasonsQuantity"
-            placeholder="Quantity"
-            value="2"
-            min="0"
-            max="500"
-          />
-        </div>
-        <div class="col-25">
-          <label for="departments">Departments:</label>
-        </div>
-        <div class="col-75">
-          <input
-            type="number"
-            id="departmentsQuantity"
-            name="departmentsQuantity"
-            placeholder="Quantity"
-            value="2"
-            min="0"
-            max="1000"
-          />
-        </div>
-        <div class="col-25">
-          <label for="candidates">Candidates:</label>
-        </div>
-        <div class="col-75">
-          <input
-            type="number"
-            id="candidatesQuantity"
-            name="candidatesQuantity"
-            placeholder="Quantity"
-            value="2"
-            min="0"
-            max="1000"
-          />
-        </div>
-        <div class="col-25">
-          <label for="jobs">Jobs:</label>
-        </div>
-        <div class="col-75">
-          <input
-            type="number"
-            id="jobsQuantity"
-            name="jobsQuantity"
-            placeholder="Quantity"
-            value="2"
-            min="0"
-            max="20"
-          />
-        </div>
-        <div class="col-25">
-          <label for="talentPools">Talent Pools:</label>
-        </div>
-        <div class="col-75">
-          <input
-            type="number"
-            id="talentpoolsQuantity"
-            name="talentpoolsQuantity"
-            placeholder="Quantity"
-            value="2"
-            min="0"
-            max="20"
-          />
-        </div>
-      </fieldset>
-      <div id="generate">
-        <button type="submit" id="generate_btn">Generate</button>
+      </form>
+    </div>
+    <div class="infobox">
+      <div
+        id="alert_success"
+        class="alert alert-success alert-dismissible"
+        role="alert"
+        hidden
+      >
+        <button
+          type="button"
+          class="close"
+          data-dismiss="alert"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <strong>Done!</strong> Your data has been generated.
       </div>
-    </form>
-    <div id="alert_success" class="alert alert-success alert-dismissible" role="alert" hidden>
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
-      </button>
-      <strong>Done!</strong> Your data has been generated.
     </div>
 
     <script src="main.js"></script>
     <script src="generateData.js"></script>
     <script src="performRequest.js"></script>
     <script src="queue.js"></script>
-
   </body>
 </html>

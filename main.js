@@ -39,3 +39,25 @@ $('#generate').on('click', function() {
   $(this).find('button[type="submit"]').html("Generating data...");
 });
 
+//Validate input
+
+var invalidChars = ["-", "e", "+", "E", "."];
+
+$("input[type='number']").on("keydown", function(e){
+    if(invalidChars.includes(e.key)){
+         e.preventDefault();
+    }
+})
+
+//Validate min and max value
+
+$(document).on('keyup', 'input[type="number"]', function() {
+  var _this = $(this);
+  var min = parseInt(_this.attr('min')) || 0; // if min attribute is not defined, 1 is default
+  var max = parseInt(_this.attr('max')) || 100; // if max attribute is not defined, 100 is default
+  var val = parseInt(_this.val()) || (min - 0); // if input char is not a number the value will be (min - 1) so first condition will be true
+  if (val < min)
+    _this.val(min);
+  if (val > max)
+    _this.val(max);
+});

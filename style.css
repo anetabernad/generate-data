@@ -6,7 +6,16 @@
   padding: 0;
 }
 
+.header {
+  font-family: "Montserrat", sans-serif;
+  font-size: 36px;
+  margin: 25px;
+}
+
 form {
+  display: flex;
+  flex-direction: column;
+
   font-family: "Montserrat", sans-serif;
   padding: 20px;
   margin: 20px;
@@ -16,38 +25,52 @@ form {
   -webkit-border-radius: 4px;
   border-radius: 4px;
   border-color: #b6c4cc;
-  width: 600px;
+  max-width: 600px;
 }
 
-form label,
-form input,
-form button {
-  margin-bottom: 3px;
-  display: block;
-  width: 100%;
+.group {
+  padding: 12px 12px 12px 12px;
+  margin-bottom: 12px;
+  display: flex;
+  flex-direction: column;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  background: #d2dde5;
+  border-color: #b6c4cc;
 }
-form input {
-  height: 25px;
-  line-height: 25px;
-  background: #fff;
-  color: #000;
-  padding: 0 6px;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-  width: 30%;
-  border: 0px;
+
+.row {
+  padding-left: 36px;
+  max-width: 300px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
+
+.company-data-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 12px;
+  max-width: 300px;
+}
+
+form label {
+  padding-right: 12px;
+}
+
 form button {
-  height: 30px;
-  line-height: 30px;
+  height: 40px;
+  justify-content: center;
   background: #117cba;
   color: #fff;
   margin-top: 10px;
+  padding: 0px 50px 0px;
   cursor: pointer;
-  width: 50%;
   border-radius: 4px;
   border: 0px;
+  display: flex;
+  flex-direction: column;
 }
 
 form button:hover {
@@ -59,18 +82,15 @@ form button:disabled {
   color: #fffafaee;
 }
 
-.fa {
-  color: #fff
-}
-
-.fa:hover {
-  color: #fff
-}
-
-.title {
-  font-family: "Montserrat", sans-serif;
-  font-size: 36px;
-  margin: 0px 25px 25px 25px;
+input {
+  height: 25px;
+  min-width: 50px;
+  background: #fff;
+  color: #000;
+  padding: 0 6px;
+  border: 0px;
+  float: inline-end;
+  border-radius: 4px;
 }
 
 input::-webkit-outer-spin-button,
@@ -79,33 +99,13 @@ input::-webkit-inner-spin-button {
   margin: 0;
 }
 
-input[type="number"] {
-  -moz-appearance: textfield;
-}
-
-.col-25 {
+input[type="checkbox"] {
+  height: 15px;
+  width: 15px;
+  align-self: center;
   float: left;
-  width: 25%;
-  margin-top: 6px;
 }
 
-.col-75 {
-  float: left;
-  width: 75%;
-  margin-top: 6px;
-}
-
-.companyData {
-  padding: 12px 12px 12px 12px;
-  margin-bottom: 12px;
-  display: block;
-  -moz-border-radius: 4px;
-  -webkit-border-radius: 4px;
-  border-radius: 4px;
-  background: #d2dde5;
-  border-color: #b6c4cc;
-}
-
-.input-group {
+.enviroment-switcher {
   margin-bottom: 12px;
 }
